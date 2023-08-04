@@ -18,3 +18,12 @@
 .card {
     border: none !important;
 }
+#loader {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+}
+.spinner-border {
+    width: 4rem;
+    height: 4rem;
+}
