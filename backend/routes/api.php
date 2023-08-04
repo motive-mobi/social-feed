@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// ROTAS DE MANIPULAÇÃO DE POSTS
+Route::controller(PostController::class)->group(function () {
+    Route::get('/posts', 'index');
+    Route::post('/posts/create', 'create');
+    Route::post('/posts/edit/', 'edit');
+    Route::post('/posts/update/', 'update');
+    Route::post('/posts/delete/', 'destroy');
 });

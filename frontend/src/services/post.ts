@@ -1,9 +1,7 @@
 export interface Post {
-    /*id: number;*/
-    name: string;
-    position: string;
-    office: string;
-    salary: string;
-    edit: string;
-    delete: string;
+    id: number;
+    author: string;
+    image: string;
+    description: string;
+    created_at: string;
   }
