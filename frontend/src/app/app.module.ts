@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-/*import { Router } from '@angular/router';*/
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 
-/*const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./app.component').then(m => m.CustomersModule)
-  }
-];*/
+const routes: Routes = [
+  { path: 'feed', component: HomeComponent },
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    /*RouterModule.forRoot(routes)*/
+    AppRoutingModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
