@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 /*const routes: Routes = [
   {
@@ -13,6 +14,10 @@ import { AppComponent } from './app.component';
   }
 ];*/
 
+const routes: Routes = [
+  { path: 'feed', component: AppComponent },
+]
+
 @NgModule({
   declarations: [
     AppComponent
@@ -20,7 +25,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    /*RouterModule.forRoot(routes)*/
+    AppRoutingModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
