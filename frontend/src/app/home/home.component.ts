@@ -107,7 +107,7 @@ export class HomeComponent implements OnInit {
       id: new FormControl(""),
       author: new FormControl(""),
       description: new FormControl(""),
-      image: new FormControl(""),
+      image: new FormControl(null),
    });
     (<HTMLInputElement>document.getElementById("closeEditModal")).click();
   }
