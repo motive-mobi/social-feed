@@ -23,8 +23,7 @@ class PostController extends Controller
 
     public function create(Request $request)
     {
-        $data = $request->all();
-        return $this->repository->createPost($data);
+        return $this->repository->createPost($request);
     }
 
     public function edit(Request $request)
@@ -35,8 +34,7 @@ class PostController extends Controller
 
     public function update(Request $request)
     {
-        $data = $request->all();
-        return $this->repository->updatePost($data);
+        return $this->repository->updatePost($request);
     }
 
     public function destroy(Request $request)

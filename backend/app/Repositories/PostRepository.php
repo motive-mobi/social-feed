@@ -14,10 +14,23 @@ class PostRepository
         return $posts;
     }
 
-    public function createPost($data)
+    public function createPost(Request $request)
     {
+        $filename = null;
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $file->move(public_path('images'), $file->getClientOriginalName());
+            $filename = 'images'.'/'.$file->getClientOriginalName();
+        }
+
         try {
-            return Post::create($data);
+            $post = Post::create([
+                'author'        => $request->author,
+                'description'   => $request->description,
+                'image'         => $filename ? $filename : null,
+            ]);
+            return $post;
         } catch (\Esception $e) {
             return $e->getMessage();
         }
@@ -29,15 +42,22 @@ class PostRepository
         return $post;
     }
 
-    public function updatePost($data)
+    public function updatePost(Request $request)
     {
-        $post = Post::find($data['id']);
+        $post = Post::find($request->id);
+        $filename = null;
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $file->move(public_path('images'), $file->getClientOriginalName());
+            $filename = 'images'.'/'.$file->getClientOriginalName();
+        }
 
         try {
             $post->update([
-                'author'        => $data['author'],
-                'description'   => $data['description'],
-                'image'         => $data['image'] ? $data['image'] : $post->image,
+                'author'        => $request->author,
+                'description'   => $request->description,
+                'image'         => $filename ? $filename : $post->image,
             ]);
             return $post;
         } catch (\Exception $e) {

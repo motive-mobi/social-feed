@@ -34,10 +34,10 @@ import {
     AppRoutingModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    NgxAwesomePopupModule.forRoot(), // Essential, mandatory main module.
-    DialogConfigModule.forRoot(), // Needed for instantiating dynamic components.
-    ConfirmBoxConfigModule.forRoot(), // Needed for instantiating confirm boxes.
-    ToastNotificationConfigModule.forRoot() // Needed for instantiating toast notifications.
+    NgxAwesomePopupModule.forRoot(),
+    DialogConfigModule.forRoot(),
+    ConfirmBoxConfigModule.forRoot(),
+    ToastNotificationConfigModule.forRoot(),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },

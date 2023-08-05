@@ -22,10 +22,9 @@ export class HomeComponent implements OnInit {
 
     this.formData = new FormGroup({
       id: new FormControl(""),
-      /*author: new FormControl("", Validators.required),*/
       author: new FormControl(""),
       description: new FormControl(""),
-      image: new FormControl(""),
+      image: new FormControl(null),
    });
   }
 
@@ -40,7 +39,7 @@ export class HomeComponent implements OnInit {
         id: new FormControl(""),
         author: new FormControl(""),
         description: new FormControl(""),
-        image: new FormControl(""),
+        image: new FormControl(null),
      });
     });
   }
@@ -50,25 +49,33 @@ export class HomeComponent implements OnInit {
     this.api.getPostById(postId)
     .subscribe(Response => {
       this.post = Response
-      /*console.log('getPostById response: ', Response)
-      console.log('this.post: ', this.post[0].id)*/
+      /*console.log('getPostById response: ', Response)*/
       this.formData = new FormGroup({
         id: new FormControl(this.post[0].id),
         author: new FormControl(this.post[0].author),
         description: new FormControl(this.post[0].description),
-        image: new FormControl(""),
+        image: new FormControl(null),
      });
     })
   }
 
   onClickSubmitCreate(data: any): void {
-    /*console.log("Form data: ", data)*/
+    /*console.log("onClickSubmitCreate data: ", data);*/
     this.api.createPost(data)
     .subscribe(Response => {
-      /*console.log("onClickSubmitCreate: ", Response)*/
+      /*console.log("onClickSubmitCreate Response: ", Response);*/
       (<HTMLInputElement>document.getElementById("closeCreateModal")).click();
       this.getPosts();
     });
+  }
+
+  onFileSelected(event: any): void {
+    const file:File = event.target.files[0];
+
+    if( file ){
+      this.formData.value.image = file;
+      /*console.log('this.formData: ', this.formData.value);*/
+    }
   }
 
   onClickSubmitEdit(data: any): void {
@@ -82,25 +89,27 @@ export class HomeComponent implements OnInit {
   }
 
   deletePost(postId: any): void {
-    console.log('deletePost id: ', postId);
+    /*console.log('deletePost id: ', postId);*/
     this.confirmBoxEvokeService.success('Atenção', 'Deseja remover este post? Esta operação não pode ser desfeita.', 'Remover', 'Cancelar')
     .subscribe(resp => {
-      console.log('resp', resp);
+      /*console.log('resp', resp);*/
       if( resp.clickedButtonID == "remover" ){
         this.api.deletePost(postId)
         .subscribe(Response => {
           this.getPosts();
-    
-          /*console.log('this.post: ', this.post[0].id)*/
-          /*this.formData = new FormGroup({
-            id: new FormControl(this.post[0].id),
-            author: new FormControl(this.post[0].author),
-            description: new FormControl(this.post[0].description),
-            image: new FormControl(""),
-         });*/
         })
       };
     });
+  }
+
+  dismissEditForm(): void {
+    this.formData = new FormGroup({
+      id: new FormControl(""),
+      author: new FormControl(""),
+      description: new FormControl(""),
+      image: new FormControl(""),
+   });
+    (<HTMLInputElement>document.getElementById("closeEditModal")).click();
   }
 
 }

@@ -9,10 +9,9 @@ import { MessageService } from './message.service';
 
 export class ApiService {
     private apiUrl = 'http://localhost:8000/api/';  // URL to web api
-    /*private apiUrl = 'http://www.mocky.io/v2/5ea172973100002d001eeada';*/
 
     httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' })
+        headers: new HttpHeaders({ 'Accept': 'application/json' })
     };
 
     constructor(private http: HttpClient, private messageService: MessageService) { }
@@ -27,8 +26,12 @@ export class ApiService {
   }
   /** POST - envia os dados do novo post **/
   createPost(data: any): Observable<Post[]> {
-    /*console.log("API POST DATA: ", data)*/
-    return this.http.post<Post[]>(this.apiUrl+'posts/create/', data)
+    /*console.log("createPost DATA: ", data.author);*/
+    let data1 = new FormData();
+    data1.append("author", data.author);
+    data1.append("description", data.description);
+    data1.append("image", data.image);
+    return this.http.post<Post[]>(this.apiUrl+'posts/create/', data1)
       .pipe(
         tap(_ => this.log('created post')),
         catchError(this.handleError<Post[]>('postPost', []))
@@ -44,8 +47,13 @@ export class ApiService {
   }
     /** POST - atualiza os dados do post (update) **/
     updatePost(data: any): Observable<Post[]> {
-      /*console.log("API POST DATA: ", data)*/
-      return this.http.post<Post[]>(this.apiUrl+'posts/update/', data)
+      /*console.log("updatePost data: ", data.author);*/
+      let data1 = new FormData();
+      data1.append("id", data.id);
+      data1.append("author", data.author);
+      data1.append("description", data.description);
+      data1.append("image", data.image);
+      return this.http.post<Post[]>(this.apiUrl+'posts/update/', data1)
         .pipe(
           tap(_ => this.log('created post')),
           catchError(this.handleError<Post[]>('postPost', []))

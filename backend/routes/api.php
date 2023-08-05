@@ -15,10 +15,6 @@ use App\Http\Controllers\API\PostController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 // ROTAS DE MANIPULAÇÃO DE POSTS
 Route::controller(PostController::class)->group(function () {
     Route::get('/posts', 'index');

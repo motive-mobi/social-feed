@@ -11,8 +11,6 @@
             Criar Post
           </button>
 
-          <!--<button id="openEditModal" type="button" class="btn btn-custom btn-lg px-5" data-bs-toggle="modal" data-bs-target="#editPostModal"></button>-->
-
         </div>
       </div>
     </div>
@@ -47,10 +45,9 @@
             </div>
             
             <div class="card-body">
-              <!--<h5 class="card-title">???</h5>-->
               <p class="card-text"> {{ post.description }} </p>
               <p><a href="#">Leia mais...</a></p>
-              <img src="{{ post.image }}" class="card-img-top" alt="...">
+              <img src="http://localhost:8000/{{ post.image }}" class="card-img-top" alt="...">
             </div>
             <div class="row">
               <div class="col text-center">
@@ -84,7 +81,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form [formGroup]=formData (ngSubmit)="onClickSubmitCreate(formData.value)">
+          <form [formGroup]=formData (ngSubmit)="onClickSubmitCreate(formData.value)" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="author" class="form-label">Autor</label>
             <input type="text" class="form-control" id="author" name="author" aria-describedby="authorHelp" formControlName="author" required>
@@ -97,7 +94,7 @@
           </div>
           <div class="mb-3">
             <label for="image" class="form-label">Imagem</label>
-            <input type="file" class="form-control" id="image" name="image" aria-describedby="authorHelp" formControlName="image">
+            <input type="file" class="form-control" id="image" name="image" aria-describedby="authorHelp" formControlName="image" (change)="onFileSelected($event)">
           </div>
           <button id="closeCreateModal" type="button" class="btn btn-custom me-2" data-bs-dismiss="modal">Fechar</button>
           <button type="submit" class="btn btn-primary">Salvar</button>
@@ -130,9 +127,9 @@
           </div>
           <div class="mb-3">
             <label for="image" class="form-label">Imagem</label>
-            <input type="file" class="form-control" id="image" name="image" aria-describedby="authorHelp" formControlName="image">
+            <input type="file" class="form-control" id="image" name="image" aria-describedby="authorHelp" formControlName="image" (change)="onFileSelected($event)">
           </div>
-          <button id="closeEditModal" type="button" class="btn btn-custom me-2" data-bs-dismiss="modal">Fechar</button>
+          <button id="closeEditModal" type="button" class="btn btn-custom me-2" data-bs-dismiss="modal" (click)="dismissEditForm()">Fechar</button>
           <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
       </div>
