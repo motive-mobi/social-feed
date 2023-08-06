@@ -85,6 +85,9 @@
           <div class="mb-3">
             <label for="author" class="form-label">Autor</label>
             <input type="text" class="form-control" id="author" name="author" aria-describedby="authorHelp" formControlName="author" required>
+            <div class="text-danger" *ngIf="!submitted" >
+              <small>Este campo é obrigatório</small>
+            </div>
           </div>
           <div class="mb-3">
             <div class="form-floating">
@@ -117,6 +120,9 @@
           <div class="mb-3">
             <label for="author" class="form-label">Autor</label>
             <input type="text" class="form-control" id="author" name="author" aria-describedby="authorHelp" formControlName="author">
+            <div class="text-danger" *ngIf="!submitted" >
+              <small>Este campo é obrigatório</small>
+            </div>
             <input type="hidden" class="form-control" id="id" name="id" aria-describedby="authorHelp" formControlName="id">
           </div>
           <div class="mb-3">
