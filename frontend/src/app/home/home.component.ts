@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  dismissEditForm(): void {
+  dismissForm(): void {
 
     this.formData = this.formBuilder.group({
       id: [''],
@@ -126,6 +126,7 @@ export class HomeComponent implements OnInit {
     this.submitted = true;
 
     (<HTMLInputElement>document.getElementById("closeEditModal")).click();
+    (<HTMLInputElement>document.getElementById("closeCreateModal")).click();
   }
 
 }

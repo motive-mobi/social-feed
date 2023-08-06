@@ -99,7 +99,7 @@
             <label for="image" class="form-label">Imagem</label>
             <input type="file" class="form-control" id="image" name="image" aria-describedby="authorHelp" formControlName="image" (change)="onFileSelected($event)">
           </div>
-          <button id="closeCreateModal" type="button" class="btn btn-custom me-2" data-bs-dismiss="modal">Fechar</button>
+          <button id="closeCreateModal" type="button" class="btn btn-custom me-2" data-bs-dismiss="modal" (click)="dismissForm()">Fechar</button>
           <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
       </div>
@@ -135,7 +135,7 @@
             <label for="image" class="form-label">Imagem</label>
             <input type="file" class="form-control" id="image" name="image" aria-describedby="authorHelp" formControlName="image" (change)="onFileSelected($event)">
           </div>
-          <button id="closeEditModal" type="button" class="btn btn-custom me-2" data-bs-dismiss="modal" (click)="dismissEditForm()">Fechar</button>
+          <button id="closeEditModal" type="button" class="btn btn-custom me-2" data-bs-dismiss="modal" (click)="dismissForm()">Fechar</button>
           <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
       </div>
