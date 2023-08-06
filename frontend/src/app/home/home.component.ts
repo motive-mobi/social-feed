@@ -89,7 +89,6 @@ export class HomeComponent implements OnInit {
 
     /** validação do campo author (required) **/
     if( this.formData.get('author')?.errors?.['required'] && this.formData.get('author')?.touched ) {
-      console.log("true conditions");
       this.submitted = false;
       return;
     }
