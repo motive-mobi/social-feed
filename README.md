@@ -31,7 +31,7 @@ docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root social-feed-database
 
 Clona o repositório:
 ```bash
-git clone git@bitbucket.org:xandeact/social-feed.git
+git clone git@github.com:motive-mobi/social-feed.git
 ```
 
 Instalação das dependências do backend:
