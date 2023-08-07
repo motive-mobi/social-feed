@@ -15,11 +15,15 @@ export class HomeComponent implements OnInit {
   post: Post[] = [];
   formData: any;
   submitted: any;
+  throttle = 500;
+  distance = 2;
+  page = 0; /* controla o início e continuidade da paginação */
+  limit = 1; /* controla o número de itens retornados pela API */
 
   constructor(private api: ApiService, private confirmBoxEvokeService: ConfirmBoxEvokeService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getPosts();
+    this.getPosts(this.page, this.limit);
 
     this.submitted = true;
 
@@ -32,11 +36,16 @@ export class HomeComponent implements OnInit {
 
   }
 
-  getPosts(): void {
-    this.api.getPosts()
+  onScroll(): void {
+    this.page++;
+    this.getPosts(this.page, this.limit);
+  }
+
+  getPosts(page: any, limit: any): void {
+    this.api.getPosts(page, limit)
     .subscribe(Response => {
 
-      this.posts = Response;
+      this.posts.push(...Response);
 
       this.formData = this.formBuilder.group({
         id: [''],
@@ -73,7 +82,10 @@ export class HomeComponent implements OnInit {
     this.api.createPost(data)
     .subscribe(Response => {
       (<HTMLInputElement>document.getElementById("closeCreateModal")).click();
-      this.getPosts();
+      this.posts = [];
+      this.page = 0;
+      this.getPosts(this.page, this.limit);
+      /*this.getPosts(this.page);*/
     });
   }
 
@@ -96,7 +108,7 @@ export class HomeComponent implements OnInit {
     this.api.updatePost(data)
     .subscribe(Response => {
       (<HTMLInputElement>document.getElementById("closeEditModal")).click();
-      this.getPosts();
+      /*this.getPosts();*/
     });
   }
 
@@ -107,7 +119,9 @@ export class HomeComponent implements OnInit {
       if( resp.clickedButtonID == "remover" ){
         this.api.deletePost(postId)
         .subscribe(Response => {
-          this.getPosts();
+          this.posts = [];
+          this.page = 0;
+          this.getPosts(this.page, this.limit);
         })
       };
     });

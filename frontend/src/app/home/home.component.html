@@ -15,7 +15,12 @@
       </div>
     </div>
 
-    <div id="feed">
+    <div id="feed"
+      infinite-scroll
+      [infiniteScrollDistance]="distance"
+      [infiniteScrollThrottle]="throttle"
+      (scrolled)="onScroll()"
+    >
 
       <div class="row" *ngFor="let post of posts">
         <div class=" col col-md-8 offset-md-2 p-2">
@@ -47,7 +52,7 @@
             <div class="card-body">
               <p class="card-text"> {{ post.description }} </p>
               <p><a href="#">Leia mais...</a></p>
-              <img src="http://localhost:8000/{{ post.image }}" class="card-img-top" alt="...">
+              <img src="http://localhost:8000/{{ post.image }}" class="card-img-top" alt="..." *ngIf="post.image">
             </div>
             <div class="row">
               <div class="col text-center">
