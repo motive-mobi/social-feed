@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     .subscribe(Response => {
 
       this.posts.push(...Response);
-
+      console.log("getPosts Response: ", Response);
       this.formData = this.formBuilder.group({
         id: [''],
         author: ['', Validators.required],
@@ -108,7 +108,9 @@ export class HomeComponent implements OnInit {
     this.api.updatePost(data)
     .subscribe(Response => {
       (<HTMLInputElement>document.getElementById("closeEditModal")).click();
-      /*this.getPosts();*/
+      this.posts = [];
+      this.page = 0;
+      this.getPosts(this.page, this.limit);
     });
   }
 
