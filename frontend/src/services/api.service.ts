@@ -17,8 +17,10 @@ export class ApiService {
     constructor(private http: HttpClient, private messageService: MessageService) { }
 
   /** GET - recupera todos os posts **/
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.apiUrl+'posts/')
+  getPosts(page: any, limit: any): Observable<Post[]> {
+    /*console.log("API getPosts page: ", page);*/
+    /*console.log("API getPosts limit: ", limit);*/
+    return this.http.get<Post[]>(this.apiUrl+'posts/?page='+page+'&limit='+limit)
       .pipe(
         tap(_ => this.log('fetched posts')),
         catchError(this.handleError<Post[]>('getPosts', []))
@@ -26,7 +28,7 @@ export class ApiService {
   }
   /** POST - envia os dados do novo post **/
   createPost(data: any): Observable<Post[]> {
-    /*console.log("createPost DATA: ", data.author);*/
+    /*console.log("createPost DATA: ", data);*/
     let data1 = new FormData();
     data1.append("author", data.author);
     data1.append("description", data.description);

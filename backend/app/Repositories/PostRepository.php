@@ -3,14 +3,16 @@
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Post;
 
 class PostRepository
 {
-    public function getPosts()
+    public function getPosts($page, $limit)
     {
-        $posts = Post::all();
+        $posts = DB::table('posts')->skip($page)->take($limit)->get();
+        /*$posts = Post::all();*/
         return $posts;
     }
 

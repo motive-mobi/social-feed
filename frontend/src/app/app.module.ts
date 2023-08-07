@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import localePT from '@angular/common/locales/pt';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,6 +39,7 @@ import {
     DialogConfigModule.forRoot(),
     ConfirmBoxConfigModule.forRoot(),
     ToastNotificationConfigModule.forRoot(),
+    InfiniteScrollModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },
