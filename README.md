@@ -27,7 +27,7 @@ docker build -t social-feed-database .
 docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root social-feed-database
 ```
 
-### 1. Backend Laravel:
+### 2. Backend Laravel:
 
 Clona o repositório:
 ```bash
@@ -66,7 +66,7 @@ Iniciando a aplicação localmente:
 php artisan serve
 ```
 
-### 2. Frontend Angular:
+### 3. Frontend Angular:
 Instalação das dependências do frontend:
 ```bash
 cd social-feed/frontend/
