@@ -18,8 +18,6 @@ export class ApiService {
 
   /** GET - recupera todos os posts **/
   getPosts(page: any, limit: any): Observable<Post[]> {
-    /*console.log("API getPosts page: ", page);*/
-    /*console.log("API getPosts limit: ", limit);*/
     return this.http.get<Post[]>(this.apiUrl+'posts/?page='+page+'&limit='+limit)
       .pipe(
         tap(_ => this.log('fetched posts')),
@@ -28,7 +26,6 @@ export class ApiService {
   }
   /** POST - envia os dados do novo post **/
   createPost(data: any): Observable<Post[]> {
-    /*console.log("createPost DATA: ", data);*/
     let data1 = new FormData();
     data1.append("author", data.author);
     data1.append("description", data.description);
@@ -49,7 +46,6 @@ export class ApiService {
   }
     /** POST - atualiza os dados do post (update) **/
     updatePost(data: any): Observable<Post[]> {
-      /*console.log("updatePost data: ", data.author);*/
       let data1 = new FormData();
       data1.append("id", data.id);
       data1.append("author", data.author);
@@ -63,7 +59,6 @@ export class ApiService {
     }
     /** POST - deleta o post **/
     deletePost(postId: any): Observable<Post[]> {
-      /*console.log("API POST DATA: ", data)*/
       return this.http.post<Post[]>(this.apiUrl+'posts/delete/', postId)
         .pipe(
           tap(_ => this.log('deleted post')),

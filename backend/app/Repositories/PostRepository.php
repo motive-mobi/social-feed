@@ -12,7 +12,6 @@ class PostRepository
     public function getPosts($page, $limit)
     {
         $posts = DB::table('posts')->skip($page)->take($limit)->get();
-        /*$posts = Post::all();*/
         return $posts;
     }
 
