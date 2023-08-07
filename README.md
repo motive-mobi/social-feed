@@ -20,7 +20,11 @@ Feed simples para criação, edição e remoção de posts.
 
 Comandos utilizados no deploy deste projeto:
 
-### 1. Criando e executando o container:
+### 1. Clonando, criando e executando o container:
+Clona o repositório:
+```bash
+git clone git@github.com:motive-mobi/social-feed.git
+```
 ```bash
 cd social-feed/
 docker build -t social-feed-database .
@@ -28,11 +32,6 @@ docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root social-feed-database
 ```
 
 ### 2. Backend Laravel:
-
-Clona o repositório:
-```bash
-git clone git@github.com:motive-mobi/social-feed.git
-```
 
 Instalação das dependências do backend:
 ```bash
